@@ -1,5 +1,8 @@
 package Card;
 
+import java.util.ArrayList;
+import java.util.Collections;
+
 import static org.junit.Assert.*;
 
 /**
@@ -34,5 +37,18 @@ public class CardTest {
     public void testToString() throws Exception {
         assertEquals("ACE of SPADES", aceSpade.toString());
 
+    }
+
+    @org.junit.Test
+    public void testCompareTo() throws Exception {
+        Card twoClubs = new Card(Suit.CLUBS, CardValue.TWO);
+
+        ArrayList<Card> list = new ArrayList<Card>();
+        list.add(aceSpade);
+        list.add(twoClubs);
+
+        Collections.sort(list);
+
+        assertEquals(twoClubs, list.get(0));
     }
 }
