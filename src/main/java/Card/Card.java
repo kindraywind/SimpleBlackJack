@@ -3,7 +3,7 @@ package Card;
 /**
  * Created by woramet on 12/20/15.
  */
-public class Card {
+public class Card implements Comparable<Card>{
 
     private Suit suit;
     private CardValue value;
@@ -24,6 +24,10 @@ public class Card {
     @Override
     public String toString() {
         return value.toString()+" of "+suit.toString();
+    }
+
+    public int compareTo(Card o) {
+        return this.value.getCardValue() - o.value.getCardValue();
     }
 }
 
