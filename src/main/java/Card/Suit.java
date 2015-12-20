@@ -6,4 +6,9 @@ public enum Suit
     SPADES,
     CLUBS,
     DIAMONDS;
+
+    @Override
+    public String toString() {
+        return name();
+    }
 }

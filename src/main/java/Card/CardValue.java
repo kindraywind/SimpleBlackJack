@@ -26,5 +26,10 @@ public enum CardValue
     public int getCardValue() {
         return cardValue;
     }
+
+    @Override
+    public String toString() {
+        return name();
+    }
 }
 
