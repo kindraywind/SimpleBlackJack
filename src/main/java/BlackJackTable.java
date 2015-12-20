@@ -1,6 +1,6 @@
 import Card.Deck;
 import Player.Dealer;
-import Player.Gambler;
+import Player.Player;
 
 /**
  * Created by woramet on 12/20/15.
@@ -8,12 +8,12 @@ import Player.Gambler;
 public class BlackJackTable {
 
     private Dealer dealer;
-    private Gambler gambler;
+    private Player player;
     private Deck cardDeck;
 
-    public BlackJackTable(Dealer dealer, Gambler gambler) {
+    public BlackJackTable(Dealer dealer, Player player) {
         this.dealer = dealer;
-        this.gambler = gambler;
+        this.player = player;
     }
 
     public void startTheGame() {

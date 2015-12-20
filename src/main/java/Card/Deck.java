@@ -28,7 +28,10 @@ public class Deck {
     }
 
     public Card drawCardFromTheTop() {
-        if (isEmpty()) return null;
+        if (isEmpty()){
+            System.out.println("Deck is empty.");
+            return null;
+        }
 
         return cards.remove(0);
     }
