@@ -20,8 +20,13 @@ public class Player extends Person{
         return true;
     }
 
+    public void printAllPossibleAction() {
+        System.out.println(getName()+"'s turn. What you gonna do?");
+        System.out.println("0: end\n1: hit");
+    }
+
     @Override
     public String toString() {
-        return "Player: "+getName();
+        return "Player "+getName();
     }
 }

@@ -51,6 +51,10 @@ public class Person {
         return isTurnEnded;
     }
 
+    public void setTurnEnded(boolean turnEnded) {
+        isTurnEnded = turnEnded;
+    }
+
     public boolean isBlackJack() {
         return  (getCardsInHand().size() == 2 && getHandValue() == 21);
     }

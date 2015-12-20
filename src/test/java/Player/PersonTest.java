@@ -65,7 +65,7 @@ public class PersonTest {
     }
 
     @Test
-    public void testDrawKingAndAce_shouldBlackJack() throws Exception {
+    public void testIsBlackJack() throws Exception {
         assertEquals(false, person.isBlackJack());
 
         person.drawCard(kingClubs);
@@ -96,5 +96,12 @@ public class PersonTest {
     @Test
     public void testGetName() throws Exception {
         assertEquals("Johny", person.getName());
+    }
+
+    @Test
+    public void testSetTurnEnded() throws Exception {
+        person.setTurnEnded(true);
+        assertEquals(true, person.isTurnEnded());
+
     }
 }

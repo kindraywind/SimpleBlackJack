@@ -15,6 +15,6 @@ public class Dealer extends Person {
 
     @Override
     public String toString() {
-        return "Dealer: "+getName();
+        return "Dealer "+getName();
     }
 }
