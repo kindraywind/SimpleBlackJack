@@ -14,9 +14,28 @@ public class BlackJackTable {
     public BlackJackTable(Dealer dealer, Player player) {
         this.dealer = dealer;
         this.player = player;
+        this.cardDeck = new Deck();
     }
 
     public void startTheGame() {
+        System.out.println("==Game start==");
+        cardDeck.resetAndShuffle();
 
+        dealTheInitialCard();
     }
+
+    public void dealTheInitialCard() {
+        player.drawCard(cardDeck.drawCardFromTheTop());
+        dealer.drawCard(cardDeck.drawCardFromTheTop());
+        player.drawCard(cardDeck.drawCardFromTheTop());
+        dealer.drawCard(cardDeck.drawCardFromTheTop());
+
+        printGameStatus();
+    }
+
+    public void printGameStatus() {
+        System.out.println("Player's hand: "+player.getCardsInHand());
+        System.out.println("Dealer's hand: "+dealer.getCardsInHand().iterator().next()+", *FOLD*");
+    }
+
 }

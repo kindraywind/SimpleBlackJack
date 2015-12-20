@@ -14,7 +14,7 @@ public class Deck {
         resetAndShuffle();
     }
 
-    private void resetAndShuffle() {
+    public void resetAndShuffle() {
         cards = new ArrayList<Card>();
         Card c;
 

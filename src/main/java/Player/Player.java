@@ -16,6 +16,10 @@ public class Player extends Person{
         super(name);
     }
 
+    public boolean isCanHit() {
+        return true;
+    }
+
     @Override
     public String toString() {
         return "Player: "+getName();
