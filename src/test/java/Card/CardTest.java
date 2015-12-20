@@ -32,7 +32,7 @@ public class CardTest {
 
     @org.junit.Test
     public void testToString() throws Exception {
-        assertEquals("ACE SPADES", aceSpade.toString());
+        assertEquals("ACE of SPADES", aceSpade.toString());
 
     }
 }
