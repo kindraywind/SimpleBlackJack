@@ -42,7 +42,7 @@ public class BlackJackTable {
         printGameStatus(false);
     }
 
-    public void playerTurn() {
+    private void playerTurn() {
 
         while (!player.isTurnEnded()) {
             if (player.isBlackJack()) {
@@ -64,12 +64,13 @@ public class BlackJackTable {
                 default:
                     break;
             }
+            player.printPlayerStatus();
 
         }
 
     }
 
-    public void dealerTurn() {
+    private void dealerTurn() {
 
         while (!dealer.isTurnEnded()) {
             if (dealer.isBlackJack()) {
@@ -84,20 +85,31 @@ public class BlackJackTable {
                 dealer.setTurnEnded(true);
             }
 
+            dealer.printDealerStatus();
+
         }
 
     }
 
-    public void calculationPhase() {
+    private void calculationPhase() {
+
+        if (player.getHandValue() > dealer.getHandValue()) {
+            System.out.println(player+" Win.");
+        } else if (player.getHandValue() < dealer.getHandValue()) {
+            System.out.println(dealer+" win");
+        } else {
+            System.out.println("draw");
+        }
 
     }
 
     public void printGameStatus(boolean isUnfold) {
-        System.out.println(player+"'s hand: "+player.getCardsInHand()+"("+player.getHandValue()+"points)");
+        player.printPlayerStatus();
         if (isUnfold) {
-            System.out.println(dealer+"'s hand: "+dealer.getCardsInHand()+"("+dealer.getHandValue()+"points)");
+            dealer.printDealerStatus();
+        } else {
+            dealer.printDealerStatusWithFoldedCard();
         }
-        System.out.println(dealer+"'s hand: "+dealer.getCardsInHand().iterator().next()+", *FOLD*");
     }
 
 }

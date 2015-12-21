@@ -25,6 +25,10 @@ public class Player extends Person{
         System.out.println("0: end\n1: hit");
     }
 
+    public void printPlayerStatus() {
+        System.out.println(this+"'s hand: "+getCardsInHand()+"("+getHandValue()+"points)");
+    }
+
     @Override
     public String toString() {
         return "Player "+getName();
