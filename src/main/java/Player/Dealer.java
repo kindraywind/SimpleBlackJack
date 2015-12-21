@@ -13,8 +13,16 @@ public class Dealer extends Person {
         super(name);
     }
 
+    public void printDealerStatusWithFoldedCard() {
+        System.out.println(this+"'s hand: "+getCardsInHand().iterator().next()+", *FOLD*");
+    }
+
+    public void printDealerStatus() {
+        System.out.println(this+"'s hand: "+getCardsInHand()+"("+getHandValue()+"points)");
+    }
+
     @Override
     public String toString() {
-        return "Dealer: "+getName();
+        return "Dealer "+getName();
     }
 }

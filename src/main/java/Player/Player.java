@@ -20,8 +20,17 @@ public class Player extends Person{
         return true;
     }
 
+    public void printAllPossibleAction() {
+        System.out.println(getName()+"'s turn. What you gonna do?");
+        System.out.println("0: end\n1: hit");
+    }
+
+    public void printPlayerStatus() {
+        System.out.println(this+"'s hand: "+getCardsInHand()+"("+getHandValue()+"points)");
+    }
+
     @Override
     public String toString() {
-        return "Player: "+getName();
+        return "Player "+getName();
     }
 }
