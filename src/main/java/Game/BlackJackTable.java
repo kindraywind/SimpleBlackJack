@@ -1,7 +1,15 @@
+package Game;
+
+import Card.Card;
+import Card.CardValue;
 import Card.Deck;
 import Player.Dealer;
 import Player.Player;
 
+import java.io.ByteArrayOutputStream;
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.Scanner;
 
 /**
@@ -9,6 +17,7 @@ import java.util.Scanner;
  */
 public class BlackJackTable {
 
+    private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
     private Dealer dealer;
     private Player player;
     private Deck cardDeck;
@@ -32,7 +41,7 @@ public class BlackJackTable {
         calculationPhase();
     }
 
-    public void dealTheInitialCard() {
+    private void dealTheInitialCard() {
         System.out.println(player+" receive 2 cards. | "+dealer+" receive one and a folded card.");
         player.drawCard(cardDeck.drawCardFromTheTop());
         dealer.drawCard(cardDeck.drawCardFromTheTop());
@@ -51,15 +60,33 @@ public class BlackJackTable {
                 break;
             }
 
-            player.printAllPossibleAction();
+            ArrayList<Action> actions = playerPossibleAction(player);
+
+            for (Action act: actions) {
+                System.out.println(act);
+            }
+
             //TODO: input action.
             int action = reader.nextInt();
             switch (action) {
-                case 0:
-                    player.setTurnEnded(true);
-                    break;
                 case 1:
                     player.drawCard(cardDeck.drawCardFromTheTop());
+                    break;
+                case 2:
+                    player.setTurnEnded(true);
+                    break;
+                case 3:
+                    player.setTurnEnded(true);
+                    break;
+                case 4:
+                    player.drawCard(cardDeck.drawCardFromTheTop());
+                    player.setTurnEnded(true);
+                    break;
+                case 5:
+                    player.setTurnEnded(true);
+                    break;
+                case 6:
+                    //split
                     break;
                 default:
                     break;
@@ -67,6 +94,43 @@ public class BlackJackTable {
             player.printPlayerStatus();
 
         }
+
+    }
+
+    public ArrayList<Action> playerPossibleAction(Player player) {
+
+        ArrayList<Action> actions = new ArrayList<Action>();
+
+        Integer canHit = 1;
+        Integer canStand = 2;
+        Integer canInsurance = 3;
+        Integer canDouble = 4;
+        Integer canSurrender = 5;
+        Integer cansplit = 6;
+
+        if (player.isTurnEnded())
+            return actions;
+
+        if (player.getHandValue() != 21)
+            actions.add(Action.HIT);
+
+        actions.add(Action.STAND);
+
+        if (dealer.getCardsInHand().iterator().next().getValue() == CardValue.ACE)
+            actions.add(Action.INSURANCE);
+        if (player.getCardsInHand().size() == 2)
+            actions.add(Action.DOUBLE);
+        if (dealer.getCardsInHand().iterator().next().getValue().getCardValue() >= CardValue.NINE.getCardValue())
+            actions.add(Action.SURRENDER);
+
+        Iterator<Card> playerHand = player.getCardsInHand().iterator();
+        Card first = playerHand.next();
+        Card second = playerHand.next();
+
+        if (player.getCardsInHand().size() == 2 && first.getValue().getCardValue() == second.getValue().getCardValue())
+            actions.add(Action.SPLIT);
+
+        return actions;
 
     }
 
