@@ -23,7 +23,7 @@ public class Card implements Comparable<Card>{
 
     @Override
     public String toString() {
-        return value.toString()+" of "+suit.toString();
+        return value.toString()+suit.toString();
     }
 
     public int compareTo(Card o) {

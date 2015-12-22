@@ -2,13 +2,20 @@ package Card;
 
 public enum Suit
 {
-    HEARTS,
-    SPADES,
-    CLUBS,
-    DIAMONDS;
+    HEARTS("♥"),
+    SPADES("♠"),
+    CLUBS("♣"),
+    DIAMONDS("♦");
+
+    private String symbol;
+
+    private Suit (String symbol)
+    {
+        this.symbol = symbol;
+    }
 
     @Override
     public String toString() {
-        return name();
+        return this.symbol;
     }
 }
