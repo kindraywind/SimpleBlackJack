@@ -1,8 +1,4 @@
-package Player;
-
-import Card.Card;
-
-import java.util.Collection;
+package com.Player;
 
 /**
  * Created by woramet on 12/20/15.

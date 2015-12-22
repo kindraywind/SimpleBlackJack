@@ -1,4 +1,4 @@
-package Card;
+package com.Card;
 
 public enum CardValue
 {

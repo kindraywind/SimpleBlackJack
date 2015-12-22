@@ -1,4 +1,4 @@
-package Card;
+package com.Card;
 
 /**
  * Created by woramet on 12/20/15.

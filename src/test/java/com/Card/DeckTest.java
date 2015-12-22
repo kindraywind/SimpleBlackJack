@@ -1,5 +1,7 @@
-package Card;
+//package com.Card;
 
+import com.Card.Card;
+import com.Card.Deck;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;

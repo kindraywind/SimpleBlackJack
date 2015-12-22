@@ -1,5 +1,8 @@
-import Game.BlackJackTable;
-import Player.*;
+package com;
+
+import com.Game.BlackJackTable;
+import com.Player.Dealer;
+import com.Player.Player;
 
 /**
  * Created by woramet on 12/20/15.

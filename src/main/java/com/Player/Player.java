@@ -1,11 +1,4 @@
-package Player;
-
-import Card.Card;
-import Card.CardValue;
-
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
+package com.Player;
 
 /**
  * Created by woramet on 12/20/15.

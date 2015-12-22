@@ -1,6 +1,9 @@
-package Player;
+package com.Player;
 
-import Card.*;
+import com.Card.Card;
+import com.Card.CardValue;
+import com.Player.Person;
+import com.Card.Suit;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;

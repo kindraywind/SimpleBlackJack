@@ -1,11 +1,11 @@
-package Game;
+package com.Game;
 
-import Player.*;
+import com.Game.BlackJack;
+import com.Player.Dealer;
+import com.Player.Player;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-
-import static org.junit.Assert.*;
 
 /**
  * Created by woramet on 12/22/15.
