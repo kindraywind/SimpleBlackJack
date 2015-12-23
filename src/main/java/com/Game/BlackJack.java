@@ -116,12 +116,12 @@ public class BlackJack {
 
     public GameStatus updateGameStatus(Player player, Dealer dealer) {
 
-        if (player.getHandValue() > 21) {
+        if (isBusts(player)) {
             //TODO: enum game state.
             return GameStatus.PLAYER_LOSE;
         }
 
-        if (dealer.getHandValue() > 21) {
+        if (isBusts(dealer)) {
             return GameStatus.DEALER_LOSE;
         }
 
@@ -134,5 +134,9 @@ public class BlackJack {
 
     public boolean isBlackJack(Person person) {
         return  (person.getCardsInHand().size() == 2 && person.getHandValue() == 21);
+    }
+
+    public boolean isBusts(Person person) {
+        return person.getHandValue() > 21;
     }
 }

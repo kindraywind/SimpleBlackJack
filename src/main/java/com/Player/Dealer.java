@@ -10,7 +10,7 @@ public class Dealer extends Person {
     }
 
     public void printDealerStatusWithFoldedCard() {
-        System.out.println(this+"'s hand: "+getCardsInHand().iterator().next()+", *FOLD*");
+        System.out.println(this+"'s hand: "+getCardsInHand().iterator().next()+", *hole*");
     }
 
     public void printDealerStatus() {
