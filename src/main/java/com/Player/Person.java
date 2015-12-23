@@ -1,6 +1,7 @@
-package Player;
+package com.Player;
 
-import Card.*;
+import com.Card.Card;
+import com.Card.CardValue;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -55,9 +56,7 @@ public class Person {
         isTurnEnded = turnEnded;
     }
 
-    public boolean isBlackJack() {
-        return  (getCardsInHand().size() == 2 && getHandValue() == 21);
-    }
+
 
     public String getName() {
         return name;

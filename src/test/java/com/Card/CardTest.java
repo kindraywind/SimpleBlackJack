@@ -1,4 +1,8 @@
-package Card;
+//package com.Card;
+
+import com.Card.Card;
+import com.Card.CardValue;
+import com.Card.Suit;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -35,7 +39,7 @@ public class CardTest {
 
     @org.junit.Test
     public void testToString() throws Exception {
-        assertEquals("ACE of SPADES", aceSpade.toString());
+        assertEquals("ACE♠", aceSpade.toString());
 
     }
 

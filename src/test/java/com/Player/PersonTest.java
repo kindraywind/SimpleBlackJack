@@ -1,6 +1,9 @@
-package Player;
+package com.Player;
 
-import Card.*;
+import com.Card.Card;
+import com.Card.CardValue;
+import com.Player.Person;
+import com.Card.Suit;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -62,35 +65,6 @@ public class PersonTest {
     @Test
     public void testIsTurnEnded() throws Exception {
         assertEquals(false, person.isTurnEnded());
-    }
-
-    @Test
-    public void testIsBlackJack() throws Exception {
-        assertEquals(false, person.isBlackJack());
-
-        person.drawCard(kingClubs);
-        person.drawCard(aceSpades);
-
-        assertEquals(true, person.isBlackJack());
-    }
-
-    @Test
-    public void testDrawKingAndFive_shouldNotBlackJack() throws Exception {
-        person.drawCard(kingClubs);
-        person.drawCard(fiveHearts);
-
-        assertEquals(false, person.isBlackJack());
-    }
-
-    @Test
-    public void testDrawFiveFiveAce_shouldNotBlackJack() throws Exception {
-        assertEquals(false, person.isBlackJack());
-
-        person.drawCard(fiveHearts);
-        person.drawCard(fiveHearts);
-        person.drawCard(aceSpades);
-
-        assertEquals(false, person.isBlackJack());
     }
 
     @Test
