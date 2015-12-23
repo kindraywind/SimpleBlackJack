@@ -18,6 +18,7 @@ public class BlackJackTable {
     private Player player;
     private Deck cardDeck;
     private BlackJack blackJack;
+    private GameStatus status;
     Scanner reader;
 
     public BlackJackTable(Dealer dealer, Player player) {
@@ -38,27 +39,24 @@ public class BlackJackTable {
 
 
         playerTurn();
-        dealerTurn();
-        calculationPhase();
-    }
 
-    private void dealTheInitialCard() {
-        System.out.println(player+" receive 2 cards. | "+dealer+" receive one and a folded card.");
-        player.drawCard(cardDeck.drawCardFromTheTop());
-        dealer.drawCard(cardDeck.drawCardFromTheTop());
-        player.drawCard(cardDeck.drawCardFromTheTop());
-        dealer.drawCard(cardDeck.drawCardFromTheTop());
+        if (status != GameStatus.PLAYER_LOSE) {
+            dealerTurn();
+        }
 
-        printGameStatus(false);
+        summaryPhase();
     }
 
     private void playerTurn() {
 
         while (!player.isTurnEnded()) {
-            if (player.isBlackJack()) {
+            if (blackJack.isBlackJack(player)) {
                 player.setTurnEnded(true);
                 System.out.println(player+" BLACKJACK!");
                 break;
+            } else if (blackJack.is21(player)) {
+                player.setTurnEnded(true);
+                System.out.println(player+" 21!");
             }
 
             ArrayList<Action> actions = playerPossibleAction(player);
@@ -68,7 +66,6 @@ public class BlackJackTable {
             }
 
             //TODO: input action.
-
 
             System.out.println("PLEASE SELECT THE ACTION: ");
             Action playerAction = playerInputsAction(player);
@@ -80,6 +77,12 @@ public class BlackJackTable {
 
             blackJack.playerDoAction(player, cardDeck, playerAction);
             player.printPlayerStatus();
+
+            status = blackJack.updateGameStatus(player, dealer);
+            if (status == GameStatus.PLAYER_LOSE) {
+                player.setTurnEnded(true);
+                break;
+            }
 
         }
 
@@ -133,11 +136,27 @@ public class BlackJackTable {
 
             dealer.printDealerStatus();
 
+            status = blackJack.updateGameStatus(player, dealer);
+            if (status == GameStatus.DEALER_LOSE) {
+                dealer.setTurnEnded(true);
+                break;
+            }
+
         }
 
     }
 
-    private void calculationPhase() {
+    private void summaryPhase() {
+
+        if (status == GameStatus.PLAYER_LOSE) {
+            System.out.println(dealer+" win");
+            return;
+        }
+
+        if (status == GameStatus.DEALER_LOSE) {
+            System.out.println(dealer+" win");
+            return;
+        }
 
         if (player.getHandValue() > dealer.getHandValue()) {
             System.out.println(player+" Win.");

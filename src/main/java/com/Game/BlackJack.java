@@ -4,8 +4,10 @@ import com.Card.Card;
 import com.Card.CardValue;
 import com.Card.Deck;
 import com.Player.Dealer;
+import com.Player.Person;
 import com.Player.Player;
 
+import java.util.Collections;
 import java.util.Iterator;
 
 /**
@@ -112,4 +114,25 @@ public class BlackJack {
         return isValid;
     }
 
+    public GameStatus updateGameStatus(Player player, Dealer dealer) {
+
+        if (player.getHandValue() > 21) {
+            //TODO: enum game state.
+            return GameStatus.PLAYER_LOSE;
+        }
+
+        if (dealer.getHandValue() > 21) {
+            return GameStatus.DEALER_LOSE;
+        }
+
+        return GameStatus.NONE;
+    }
+
+    public boolean is21(Person person) {
+            return (person.getHandValue() == 21);
+    }
+
+    public boolean isBlackJack(Person person) {
+        return  (person.getCardsInHand().size() == 2 && person.getHandValue() == 21);
+    }
 }

@@ -67,34 +67,7 @@ public class PersonTest {
         assertEquals(false, person.isTurnEnded());
     }
 
-    @Test
-    public void testIsBlackJack() throws Exception {
-        assertEquals(false, person.isBlackJack());
 
-        person.drawCard(kingClubs);
-        person.drawCard(aceSpades);
-
-        assertEquals(true, person.isBlackJack());
-    }
-
-    @Test
-    public void testDrawKingAndFive_shouldNotBlackJack() throws Exception {
-        person.drawCard(kingClubs);
-        person.drawCard(fiveHearts);
-
-        assertEquals(false, person.isBlackJack());
-    }
-
-    @Test
-    public void testDrawFiveFiveAce_shouldNotBlackJack() throws Exception {
-        assertEquals(false, person.isBlackJack());
-
-        person.drawCard(fiveHearts);
-        person.drawCard(fiveHearts);
-        person.drawCard(aceSpades);
-
-        assertEquals(false, person.isBlackJack());
-    }
 
     @Test
     public void testGetName() throws Exception {
