@@ -34,7 +34,7 @@ public class BlackJackTable {
         System.out.println("==$==$==Game start==$==$==");
         cardDeck.resetAndShuffle();
         blackJack.dealTheInitialCard(cardDeck, player, dealer);
-        System.out.println(player+" receive 2 cards. | "+dealer+" receive one and a folded card.");
+        System.out.println(player+" receive 2 cards. | "+dealer+" receive one and a hole card.");
         printGameStatus(false);
 
 
@@ -71,6 +71,7 @@ public class BlackJackTable {
                 playerAction = playerInputsAction(player);
             }
 
+            System.out.println(player+" "+playerAction.name());
             blackJack.playerDoAction(player, cardDeck, playerAction);
             player.printPlayerStatus();
 
@@ -81,13 +82,10 @@ public class BlackJackTable {
             }
 
             status = blackJack.updateGameStatus(player, dealer);
-            System.out.println("status: "+status);
             if (status == GameStatus.PLAYER_LOSE) {
                 player.setTurnEnded(true);
                 return;
             }
-
-
 
         }
 
@@ -133,16 +131,18 @@ public class BlackJackTable {
             if (blackJack.isBlackJack(dealer)) {
                 dealer.setTurnEnded(true);
                 System.out.println(dealer+" BLACKJACK!");
-                break;
+                return;
             } else if (blackJack.is21(dealer)) {
                 dealer.setTurnEnded(true);
                 System.out.println(dealer+" 21!");
-                break;
+                return;
             }
 
-            if (dealer.getHandValue() <= 16) {
+            if (dealer.getHandValue() <= 16 || player.getHandValue() > dealer.getHandValue()) {
+                System.out.println(dealer+" "+Action.HIT.name());
                 dealer.drawCard(cardDeck.drawCardFromTheTop());
             } else {
+                System.out.println(dealer+" "+Action.STAND.name());
                 dealer.setTurnEnded(true);
             }
 
@@ -151,7 +151,7 @@ public class BlackJackTable {
             status = blackJack.updateGameStatus(player, dealer);
             if (status == GameStatus.DEALER_LOSE) {
                 dealer.setTurnEnded(true);
-                break;
+                return;
             }
 
         }
@@ -176,6 +176,8 @@ public class BlackJackTable {
         } else {
             System.out.println("draw");
         }
+
+        System.out.println("====GAME OVER====");
 
     }
 

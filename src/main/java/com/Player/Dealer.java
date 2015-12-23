@@ -14,7 +14,11 @@ public class Dealer extends Person {
     }
 
     public void printDealerStatus() {
-        System.out.println(this+"'s hand: "+getCardsInHand()+"("+getHandValue()+"points)");
+        if (getHandValue() > 21) {
+            System.out.println(this+"'s hand: "+getCardsInHand()+"("+getHandValue()+"points) *BUSTS!");
+        } else {
+            System.out.println(this+"'s hand: "+getCardsInHand()+"("+getHandValue()+"points)");
+        }
     }
 
     @Override
