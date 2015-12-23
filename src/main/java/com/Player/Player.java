@@ -9,10 +9,6 @@ public class Player extends Person{
         super(name);
     }
 
-    public boolean isCanHit() {
-        return true;
-    }
-
     public void printPlayerStatus() {
         System.out.println(this+"'s hand: "+getCardsInHand()+"("+getHandValue()+"points)");
     }

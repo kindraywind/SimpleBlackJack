@@ -58,7 +58,10 @@ public class BlackJack {
     }
 
 
-    public void playerDoAction(Player player, Deck cardDeck, Action action) {
+    public GameStatus playerDoAction(Player player, Deck cardDeck, Action action) {
+
+        GameStatus status = GameStatus.NONE;
+
         switch (action) {
             case HIT:
                 player.drawCard(cardDeck.drawCardFromTheTop());
@@ -75,13 +78,16 @@ public class BlackJack {
                 break;
             case SURRENDER:
                 player.setTurnEnded(true);
+                status = GameStatus.PLAYER_LOSE;
                 break;
             case SPLIT:
                 //split
                 break;
             default:
+                status = GameStatus.NONE;
                 break;
         }
+        return status;
     }
 
     public boolean isPlayerDoValidAction(Player player, Dealer dealer, Action action) {

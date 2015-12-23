@@ -67,8 +67,6 @@ public class PersonTest {
         assertEquals(false, person.isTurnEnded());
     }
 
-
-
     @Test
     public void testGetName() throws Exception {
         assertEquals("Johny", person.getName());

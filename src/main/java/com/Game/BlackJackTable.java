@@ -151,7 +151,6 @@ public class BlackJackTable {
             status = blackJack.updateGameStatus(player, dealer);
             if (status == GameStatus.DEALER_LOSE) {
                 dealer.setTurnEnded(true);
-                System.out.println("DEALER KAKKKK");
                 break;
             }
 
@@ -160,9 +159,6 @@ public class BlackJackTable {
     }
 
     private void summaryPhase() {
-
-        System.out.println(status);
-
         if (status == GameStatus.PLAYER_LOSE) {
             System.out.println(dealer+" win");
             return;
