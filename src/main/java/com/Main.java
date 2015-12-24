@@ -17,16 +17,19 @@ public class Main {
 
         boolean isRestart = true;
 
-        Dealer elsa = new Dealer("Elsa");
-        Player johny = new Player("Johny");
+        Dealer elsa;
+        Player player;
         Scanner reader = new Scanner(System.in);
 
-        BlackJackTable bjTable = new BlackJackTable(elsa, johny);
+        System.out.println("Please enter your name:");
+        String name = reader.nextLine();
+
+        BlackJackTable bjTable;
 
         while (isRestart) {
             elsa = new Dealer("Elsa");
-            johny = new Player("Johny");
-            bjTable = new BlackJackTable(elsa, johny);
+            player = new Player(name);
+            bjTable = new BlackJackTable(elsa, player);
             bjTable.startTheGame();
 
             System.out.println("type y to restart or any to exit.");
