@@ -56,35 +56,33 @@ public class BlackJackTable {
             if (blackJack.isBlackJack(player)) {
                 player.setTurnEnded(true);
                 System.out.println(player+" BLACKJACK!");
-                return;
-            }
+                break;
+            } else {
+                for (Action act: playerPossibleAction(player)) {
+                    System.out.println(act);
+                }
 
-            for (Action act: playerPossibleAction(player)) {
-                System.out.println(act);
-            }
+                System.out.println("PLEASE SELECT THE ACTION: ");
+                Action playerAction = playerInputsAction(player);
 
-            System.out.println("PLEASE SELECT THE ACTION: ");
-            Action playerAction = playerInputsAction(player);
+                while(!blackJack.isPlayerDoValidAction(player, dealer, playerAction)) {
+                    System.out.println("Invalid.\nPLEASE SELECT THE ACTION: ");
+                    playerAction = playerInputsAction(player);
+                }
 
-            while(!blackJack.isPlayerDoValidAction(player, dealer, playerAction)) {
-                System.out.println("Invalid.\nPLEASE SELECT THE ACTION: ");
-                playerAction = playerInputsAction(player);
-            }
+                System.out.println(player+" "+playerAction.name());
+                blackJack.playerDoAction(player, cardDeck, playerAction);
+                player.printPlayerStatus();
 
-            System.out.println(player+" "+playerAction.name());
-            blackJack.playerDoAction(player, cardDeck, playerAction);
-            player.printPlayerStatus();
+                status = blackJack.updateGameStatus(player, dealer);
 
-            if (blackJack.is21(player)) {
-                player.setTurnEnded(true);
-                System.out.println(player+" 21!");
-                return;
-            }
-
-            status = blackJack.updateGameStatus(player, dealer);
-            if (status == GameStatus.PLAYER_LOSE) {
-                player.setTurnEnded(true);
-                return;
+                if (blackJack.isShouldEnd(player)) {
+                    if (blackJack.is21(player)) {
+                        System.out.println(player+" 21!");
+                    }
+                    player.setTurnEnded(true);
+                    return;
+                }
             }
 
         }

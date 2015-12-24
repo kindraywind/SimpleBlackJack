@@ -27,33 +27,45 @@ public class BlackJack {
     }
 
     public boolean canPlayerHit(Player player) {
-        return (player.getHandValue() != 21) && !player.isTurnEnded();
+        if (isImpossibleHand(player)) return false;
+
+        return (player.getHandValue() <= 20) && (player.getCardsInHand().size() >= 2) && !player.isTurnEnded();
     }
 
     public boolean canPlayerStand(Player player) {
-        return !player.isTurnEnded();
+        if (isImpossibleHand(player)) return false;
+
+        return !player.isTurnEnded() && (player.getCardsInHand().size() >= 2) ;
     }
 
     public boolean canPlayerTakeAnInsurance(Player player, Dealer dealer) {
+        if (isImpossibleHand(player)) return false;
+
         return  (dealer.getCardsInHand().iterator().next().getValue() == CardValue.ACE) && !player.isTurnEnded();
     }
 
     public boolean canPlayerDouble(Player player) {
+        if (isImpossibleHand(player)) return false;
+
         return  (player.getCardsInHand().size() == 2) && !player.isTurnEnded();
 
     }
 
     public boolean canPlayerSurrender(Player player) {
-        return  (player.getCardsInHand().size() == 2) && !player.isTurnEnded();
+        if (isImpossibleHand(player)) return false;
+
+        return (player.getCardsInHand().size() == 2) && (player.getHandValue() <=16)  && !player.isTurnEnded();
 
     }
 
     public boolean canPlayerSplit(Player player) {
+        if (isImpossibleHand(player)) return false;
+
         Iterator<Card> playerHand = player.getCardsInHand().iterator();
         Card first = playerHand.next();
         Card second = playerHand.next();
 
-        return  (player.getCardsInHand().size() == 2 && first.getValue().getCardValue() == second.getValue().getCardValue())
+        return  (player.getCardsInHand().size() == 2 && first.getIntValue() == second.getIntValue())
                 && !player.isTurnEnded();
     }
 
@@ -144,5 +156,22 @@ public class BlackJack {
 
     public boolean isBusts(Person person) {
         return person.getHandValue() > 21;
+    }
+
+    public boolean isShouldEnd(Person person) {
+        if (isImpossibleHand(person)) return false;
+
+        return (is21(person) || isBlackJack(person) || isBusts(person));
+    }
+
+    public boolean isImpossibleHand(Person person) {
+        //minimal version.
+        return (person.getCardsInHand().size() <=4 && person.getHandValue() < person.getCardsInHand().size()*2) ||
+                person.getCardsInHand().size() == 2 && person.getHandValue() > 21 ||
+                person.getHandValue() >30 ||
+                person.getCardsInHand().size() < 2 ||
+                person.getCardsInHand().size() > 10 && person.getHandValue() < 21 ||
+                person.getCardsInHand().size() > 11 && person.getHandValue() >= 21
+                ;
     }
 }

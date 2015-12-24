@@ -27,6 +27,10 @@ public class Person {
             throw new NullPointerException("Cannot draw null card.");
         }
         hands.add(card);
+
+        if (getHandValue() >= 21) {
+            setTurnEnded(true);
+        }
     }
 
     public Collection<Card> getCardsInHand() {
@@ -38,7 +42,7 @@ public class Person {
         Collections.sort(hands);
 
         for (Card c: hands) {
-            value += c.getValue().getCardValue();
+            value += c.getIntValue();
 
             if (value > 21 && c.getValue() == CardValue.ACE) {
                 value -= 10;
