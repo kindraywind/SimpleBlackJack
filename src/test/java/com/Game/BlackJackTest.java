@@ -3,7 +3,6 @@ package com.Game;
 import com.Card.Card;
 import com.Card.CardValue;
 import com.Card.Suit;
-import com.Game.BlackJack;
 import com.Player.Dealer;
 import com.Player.Player;
 import org.junit.After;
@@ -48,7 +47,7 @@ public class BlackJackTest {
 
     //TODO: write unit-test from SE2 final project.
 
-    private void varient1ExpectedResult() {
+    private void variant1ExpectedResult() {
         assertTrue(blackJack.canPlayerHit(player));
         assertTrue(blackJack.canPlayerStand(player));
         assertTrue(blackJack.canPlayerDouble(player));
@@ -57,7 +56,7 @@ public class BlackJackTest {
         assertFalse(blackJack.isBlackJack(player));
     }
 
-    private void varient2ExpectedResult() {
+    private void variant2ExpectedResult() {
         assertTrue(blackJack.canPlayerHit(player));
         assertTrue(blackJack.canPlayerStand(player));
         assertTrue(blackJack.canPlayerDouble(player));
@@ -66,7 +65,7 @@ public class BlackJackTest {
         assertFalse(blackJack.isBlackJack(player));
     }
 
-    private void varient3ExpectedResult() {
+    private void variant3ExpectedResult() {
         assertFalse(blackJack.canPlayerHit(player));
         assertFalse(blackJack.canPlayerStand(player));
         assertFalse(blackJack.canPlayerDouble(player));
@@ -75,7 +74,7 @@ public class BlackJackTest {
         assertTrue(blackJack.isBlackJack(player));
     }
 
-    private void varient4ExpectedResult() {
+    private void variant4ExpectedResult() {
         assertTrue(blackJack.canPlayerHit(player));
         assertTrue(blackJack.canPlayerStand(player));
         assertFalse(blackJack.canPlayerDouble(player));
@@ -84,7 +83,7 @@ public class BlackJackTest {
         assertFalse(blackJack.isBlackJack(player));
     }
 
-    private void varient5ExpectedResult() {
+    private void variant5ExpectedResult() {
         assertFalse(blackJack.canPlayerHit(player));
         assertFalse(blackJack.canPlayerStand(player));
         assertFalse(blackJack.canPlayerDouble(player));
@@ -110,7 +109,7 @@ public class BlackJackTest {
         assertEquals(2, player.getCardsInHand().size());
         assertEquals(10, player.getHandValue());
 
-        varient1ExpectedResult();
+        variant1ExpectedResult();
     }
 
     @Test
@@ -132,7 +131,7 @@ public class BlackJackTest {
         assertEquals(2, player.getCardsInHand().size());
         assertEquals(4, player.getHandValue());
 
-        varient1ExpectedResult();
+        variant1ExpectedResult();
     }
 
     @Test
@@ -161,7 +160,7 @@ public class BlackJackTest {
         assertEquals(2, player.getCardsInHand().size());
         assertEquals(16, player.getHandValue());
 
-        varient1ExpectedResult();
+        variant1ExpectedResult();
     }
 
     @Test
@@ -172,7 +171,7 @@ public class BlackJackTest {
         assertEquals(2, player.getCardsInHand().size());
         assertEquals(18, player.getHandValue());
 
-        varient2ExpectedResult();
+        variant2ExpectedResult();
     }
 
     @Test
@@ -198,7 +197,7 @@ public class BlackJackTest {
         assertEquals(2, player.getCardsInHand().size());
         assertEquals(17, player.getHandValue());
 
-        varient2ExpectedResult();
+        variant2ExpectedResult();
     }
 
     @Test
@@ -209,7 +208,7 @@ public class BlackJackTest {
         assertEquals(2, player.getCardsInHand().size());
         assertEquals(20, player.getHandValue());
 
-        varient2ExpectedResult();
+        variant2ExpectedResult();
     }
 
     @Test
@@ -220,7 +219,7 @@ public class BlackJackTest {
         assertEquals(2, player.getCardsInHand().size());
         assertEquals(21, player.getHandValue());
 
-        varient3ExpectedResult();
+        variant3ExpectedResult();
     }
 
     @Test
@@ -247,7 +246,7 @@ public class BlackJackTest {
         assertEquals(3, player.getCardsInHand().size());
         assertEquals(18, player.getHandValue());
 
-        varient4ExpectedResult();
+        variant4ExpectedResult();
     }
 
     @Test
@@ -266,7 +265,7 @@ public class BlackJackTest {
         assertEquals(10, player.getCardsInHand().size());
         assertEquals(18, player.getHandValue());
 
-        varient4ExpectedResult();
+        variant4ExpectedResult();
     }
 
     @Test
@@ -305,7 +304,7 @@ public class BlackJackTest {
         assertEquals(3, player.getCardsInHand().size());
         assertEquals(6, player.getHandValue());
 
-        varient4ExpectedResult();
+        variant4ExpectedResult();
     }
 
     @Test
@@ -335,7 +334,7 @@ public class BlackJackTest {
         assertEquals(3, player.getCardsInHand().size());
         assertEquals(20, player.getHandValue());
 
-        varient4ExpectedResult();
+        variant4ExpectedResult();
     }
 
     @Test
@@ -347,7 +346,7 @@ public class BlackJackTest {
         assertEquals(3, player.getCardsInHand().size());
         assertEquals(25, player.getHandValue());
 
-        varient5ExpectedResult();
+        variant5ExpectedResult();
     }
 
     @Test
@@ -384,7 +383,7 @@ public class BlackJackTest {
         assertEquals(11, player.getCardsInHand().size());
         assertEquals(25, player.getHandValue());
 
-        varient5ExpectedResult();
+        variant5ExpectedResult();
     }
 
     @Test
@@ -421,7 +420,7 @@ public class BlackJackTest {
         assertEquals(5, player.getCardsInHand().size());
         assertEquals(21, player.getHandValue());
 
-        varient5ExpectedResult();
+        variant5ExpectedResult();
     }
 
     @Test
@@ -435,7 +434,7 @@ public class BlackJackTest {
         assertEquals(5, player.getCardsInHand().size());
         assertEquals(30, player.getHandValue());
 
-        varient5ExpectedResult();
+        variant5ExpectedResult();
     }
 
     @Test
