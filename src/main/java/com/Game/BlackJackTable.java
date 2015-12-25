@@ -26,6 +26,7 @@ public class BlackJackTable {
         this.player = player;
         this.cardDeck = new Deck();
         this.blackJack = new BlackJack();
+        this.status = GameStatus.NONE;
 
         reader = new Scanner(System.in);
     }
@@ -41,6 +42,7 @@ public class BlackJackTable {
         playerTurn();
 
         if (status != GameStatus.PLAYER_LOSE) {
+            System.out.println(status+"555555555555");
             dealerTurn();
         }
 
@@ -71,10 +73,9 @@ public class BlackJackTable {
                 }
 
                 System.out.println(player+" "+playerAction.name());
-                blackJack.playerDoAction(player, cardDeck, playerAction);
+                status = blackJack.playerDoAction(player, cardDeck, playerAction);
                 player.printPlayerStatus();
-
-                status = blackJack.updateGameStatus(player, dealer);
+                status = blackJack.updateGameStatus(player, dealer, status);
 
                 if (blackJack.isShouldEnd(player)) {
                     if (blackJack.is21(player)) {
@@ -102,14 +103,10 @@ public class BlackJackTable {
         if (blackJack.canPlayerStand(player))
             actions.add(Action.STAND);
 
-        if (blackJack.canPlayerTakeAnInsurance(player, dealer))
-            actions.add(Action.INSURANCE);
         if (blackJack.canPlayerDouble(player))
             actions.add(Action.DOUBLE);
         if (blackJack.canPlayerSurrender(player))
             actions.add(Action.SURRENDER);
-        if (blackJack.canPlayerSplit(player))
-            actions.add(Action.SPLIT);
 
         return actions;
 
@@ -146,7 +143,7 @@ public class BlackJackTable {
 
             dealer.printDealerStatus();
 
-            status = blackJack.updateGameStatus(player, dealer);
+            status = blackJack.updateGameStatus(player, dealer, status);
             if (status == GameStatus.DEALER_LOSE) {
                 dealer.setTurnEnded(true);
                 return;

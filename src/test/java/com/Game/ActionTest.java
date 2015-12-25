@@ -30,16 +30,10 @@ public class ActionTest {
         assertEquals(Action.STAND, a);
 
         a = Action.fromInteger(3);
-        assertEquals(Action.INSURANCE, a);
-
-        a = Action.fromInteger(4);
         assertEquals(Action.DOUBLE, a);
 
-        a = Action.fromInteger(5);
+        a = Action.fromInteger(4);
         assertEquals(Action.SURRENDER, a);
-
-        a = Action.fromInteger(6);
-        assertEquals(Action.SPLIT, a);
 
         a = Action.fromInteger(123);
         assertEquals(Action.INVALID, a);

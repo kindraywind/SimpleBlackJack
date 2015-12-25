@@ -5,12 +5,11 @@ package com.Game;
  */
 public enum Action {
 
+    //TODO: remove insurance, split
     HIT(1),
     STAND(2),
-    INSURANCE(3),
-    DOUBLE(4),
-    SURRENDER(5),
-    SPLIT(6),
+    DOUBLE(3),
+    SURRENDER(4),
     INVALID(-1);
 
     private int action;
@@ -31,13 +30,9 @@ public enum Action {
             case 2:
                 return STAND;
             case 3:
-                return INSURANCE;
-            case 4:
                 return DOUBLE;
-            case 5:
+            case 4:
                 return SURRENDER;
-            case 6:
-                return SPLIT;
             default:
                 return INVALID;
         }

@@ -81,9 +81,6 @@ public class BlackJack {
             case STAND:
                 player.setTurnEnded(true);
                 break;
-            case INSURANCE:
-                player.setTurnEnded(true);
-                break;
             case DOUBLE:
                 player.drawCard(cardDeck.drawCardFromTheTop());
                 player.setTurnEnded(true);
@@ -91,9 +88,6 @@ public class BlackJack {
             case SURRENDER:
                 player.setTurnEnded(true);
                 status = GameStatus.PLAYER_LOSE;
-                break;
-            case SPLIT:
-                //split
                 break;
             default:
                 status = GameStatus.NONE;
@@ -112,17 +106,11 @@ public class BlackJack {
             case STAND:
                 isValid = canPlayerStand(player);
                 break;
-            case INSURANCE:
-                isValid = canPlayerTakeAnInsurance(player, dealer);
-                break;
             case DOUBLE:
                 isValid = canPlayerDouble(player);
                 break;
             case SURRENDER:
                 isValid = canPlayerSurrender(player);
-                break;
-            case SPLIT:
-                isValid = canPlayerSplit(player);
                 break;
             default:
                 isValid = false;
@@ -132,7 +120,11 @@ public class BlackJack {
         return isValid;
     }
 
-    public GameStatus updateGameStatus(Player player, Dealer dealer) {
+    public GameStatus updateGameStatus(Player player, Dealer dealer, GameStatus currentStatus) {
+
+        if (currentStatus != GameStatus.NONE) {
+            return currentStatus;
+        }
 
         if (isBusts(player)) {
             //TODO: enum game state.
