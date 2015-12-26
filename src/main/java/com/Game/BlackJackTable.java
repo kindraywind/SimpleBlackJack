@@ -42,7 +42,6 @@ public class BlackJackTable {
         playerTurn();
 
         if (status != GameStatus.PLAYER_LOSE) {
-            System.out.println(status+"555555555555");
             dealerTurn();
         }
 
