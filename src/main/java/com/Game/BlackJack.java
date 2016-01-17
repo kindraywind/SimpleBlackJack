@@ -38,12 +38,6 @@ public class BlackJack {
         return !player.isTurnEnded() && (player.getCardsInHand().size() >= 2) ;
     }
 
-    public boolean canPlayerTakeAnInsurance(Player player, Dealer dealer) {
-        if (isImpossibleHand(player)) return false;
-
-        return  (dealer.getCardsInHand().iterator().next().getValue() == CardValue.ACE) && !player.isTurnEnded();
-    }
-
     public boolean canPlayerDouble(Player player) {
         if (isImpossibleHand(player)) return false;
 
@@ -57,18 +51,6 @@ public class BlackJack {
         return (player.getCardsInHand().size() == 2) && (player.getHandValue() <=16)  && !player.isTurnEnded();
 
     }
-
-    public boolean canPlayerSplit(Player player) {
-        if (isImpossibleHand(player)) return false;
-
-        Iterator<Card> playerHand = player.getCardsInHand().iterator();
-        Card first = playerHand.next();
-        Card second = playerHand.next();
-
-        return  (player.getCardsInHand().size() == 2 && first.getIntValue() == second.getIntValue())
-                && !player.isTurnEnded();
-    }
-
 
     public GameStatus playerDoAction(Player player, Deck cardDeck, Action action) {
 
@@ -127,7 +109,6 @@ public class BlackJack {
         }
 
         if (isBusts(player)) {
-            //TODO: enum game state.
             return GameStatus.PLAYER_LOSE;
         }
 

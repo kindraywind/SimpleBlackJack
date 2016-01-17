@@ -35,7 +35,7 @@ public class BlackJackTable {
         System.out.println("==$==$==Game start==$==$==");
         cardDeck.resetAndShuffle();
         blackJack.dealTheInitialCard(cardDeck, player, dealer);
-        System.out.println(player+" receive 2 cards. | "+dealer+" receive one and a hole card.");
+        System.out.println(player+" receives 2 cards. | "+dealer+" receives one and a hole card.");
         printGameStatus(false);
 
 

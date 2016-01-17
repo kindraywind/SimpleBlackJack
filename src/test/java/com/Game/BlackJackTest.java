@@ -2,6 +2,7 @@ package com.Game;
 
 import com.Card.Card;
 import com.Card.CardValue;
+import com.Card.Deck;
 import com.Card.Suit;
 import com.Player.Dealer;
 import com.Player.Player;
@@ -43,6 +44,15 @@ public class BlackJackTest {
         fiveHearts = null;
         kingClubs = null;
 
+    }
+
+    @Test
+    public void testDealTheInitialCard() throws Exception {
+        Deck deck = new Deck();
+        blackJack.dealTheInitialCard(deck, player, dealer);
+
+        assertEquals(2, player.getCardsInHand().size());
+        assertEquals(2, dealer.getCardsInHand().size());
     }
 
     //TODO: write unit-test from SE2 final project.
