@@ -21,6 +21,10 @@ public class Card implements Comparable<Card>{
         return value;
     }
 
+    public int getIntValue() {
+        return value.getCardValue();
+    }
+
     @Override
     public String toString() {
         return value.toString()+suit.toString();

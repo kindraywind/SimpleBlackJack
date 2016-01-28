@@ -27,36 +27,30 @@ public class BlackJack {
     }
 
     public boolean canPlayerHit(Player player) {
-        return (player.getHandValue() != 21) && !player.isTurnEnded();
+        if (isImpossibleHand(player)) return false;
+
+        return (player.getHandValue() <= 20) && (player.getCardsInHand().size() >= 2) && !player.isTurnEnded();
     }
 
     public boolean canPlayerStand(Player player) {
-        return !player.isTurnEnded();
-    }
+        if (isImpossibleHand(player)) return false;
 
-    public boolean canPlayerTakeAnInsurance(Player player, Dealer dealer) {
-        return  (dealer.getCardsInHand().iterator().next().getValue() == CardValue.ACE) && !player.isTurnEnded();
+        return !player.isTurnEnded() && (player.getCardsInHand().size() >= 2) ;
     }
 
     public boolean canPlayerDouble(Player player) {
+        if (isImpossibleHand(player)) return false;
+
         return  (player.getCardsInHand().size() == 2) && !player.isTurnEnded();
 
     }
 
     public boolean canPlayerSurrender(Player player) {
-        return  (player.getCardsInHand().size() == 2) && !player.isTurnEnded();
+        if (isImpossibleHand(player)) return false;
+
+        return (player.getCardsInHand().size() == 2) && (player.getHandValue() <=16)  && !player.isTurnEnded();
 
     }
-
-    public boolean canPlayerSplit(Player player) {
-        Iterator<Card> playerHand = player.getCardsInHand().iterator();
-        Card first = playerHand.next();
-        Card second = playerHand.next();
-
-        return  (player.getCardsInHand().size() == 2 && first.getValue().getCardValue() == second.getValue().getCardValue())
-                && !player.isTurnEnded();
-    }
-
 
     public GameStatus playerDoAction(Player player, Deck cardDeck, Action action) {
 
@@ -69,9 +63,6 @@ public class BlackJack {
             case STAND:
                 player.setTurnEnded(true);
                 break;
-            case INSURANCE:
-                player.setTurnEnded(true);
-                break;
             case DOUBLE:
                 player.drawCard(cardDeck.drawCardFromTheTop());
                 player.setTurnEnded(true);
@@ -79,9 +70,6 @@ public class BlackJack {
             case SURRENDER:
                 player.setTurnEnded(true);
                 status = GameStatus.PLAYER_LOSE;
-                break;
-            case SPLIT:
-                //split
                 break;
             default:
                 status = GameStatus.NONE;
@@ -100,17 +88,11 @@ public class BlackJack {
             case STAND:
                 isValid = canPlayerStand(player);
                 break;
-            case INSURANCE:
-                isValid = canPlayerTakeAnInsurance(player, dealer);
-                break;
             case DOUBLE:
                 isValid = canPlayerDouble(player);
                 break;
             case SURRENDER:
                 isValid = canPlayerSurrender(player);
-                break;
-            case SPLIT:
-                isValid = canPlayerSplit(player);
                 break;
             default:
                 isValid = false;
@@ -120,10 +102,13 @@ public class BlackJack {
         return isValid;
     }
 
-    public GameStatus updateGameStatus(Player player, Dealer dealer) {
+    public GameStatus updateGameStatus(Player player, Dealer dealer, GameStatus currentStatus) {
+
+        if (currentStatus != GameStatus.NONE) {
+            return currentStatus;
+        }
 
         if (isBusts(player)) {
-            //TODO: enum game state.
             return GameStatus.PLAYER_LOSE;
         }
 
@@ -144,5 +129,22 @@ public class BlackJack {
 
     public boolean isBusts(Person person) {
         return person.getHandValue() > 21;
+    }
+
+    public boolean isShouldEnd(Person person) {
+        if (isImpossibleHand(person)) return false;
+
+        return (is21(person) || isBlackJack(person) || isBusts(person));
+    }
+
+    public boolean isImpossibleHand(Person person) {
+        //minimal version.
+        return (person.getCardsInHand().size() <=4 && person.getHandValue() < person.getCardsInHand().size()*2) ||
+                person.getCardsInHand().size() == 2 && person.getHandValue() > 21 ||
+                person.getHandValue() >30 ||
+                person.getCardsInHand().size() < 2 ||
+                person.getCardsInHand().size() > 10 && person.getHandValue() < 21 ||
+                person.getCardsInHand().size() > 11 && person.getHandValue() >= 21
+                ;
     }
 }
