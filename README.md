@@ -1,5 +1,5 @@
 # SimpleBlackJack
-####Simple command line simple version of 2 players blackjack
+####Simple command line version of 2 players blackjack
 -
 This software is a part of the Software Engineering II 's final report at Keio University.
 
